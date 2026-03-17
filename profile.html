@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Floretics of Magic - Мой профиль</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .profile-section {
+            padding: 3rem 0;
+            min-height: 60vh;
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-gradient-end));
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            text-align: center;
+        }
+
+        .profile-avatar {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .profile-header h1 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-header p {
+            opacity: 0.9;
+        }
+
+        .profile-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .profile-info {
+            margin-bottom: 2rem;
+        }
+
+        .info-row {
+            display: flex;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-label {
+            width: 150px;
+            font-weight: 600;
+            color: var(--color-text-light);
+        }
+
+        .info-value {
+            flex: 1;
+            color: var(--color-text);
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .orders-list {
+            margin-top: 2rem;
+        }
+
+        .order-item {
+            background: var(--color-card-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px dashed #ddd;
+        }
+
+        .order-number {
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .order-status {
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .status-delivered {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .status-processing {
+            background: #ff9800;
+            color: white;
+        }
+
+        .order-total {
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__inner">
+                <div class="logo">
+                    <a href="index.html">🌸 The Floretics of Magic</a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="catalog.html" class="nav__link">Каталог</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="contacts.html" class="nav__link">Контакты</a></li>
+                        <li class="nav__item dropdown">
+                            <a href="#" class="nav__link">Личный кабинет</a>
+                            <ul class="dropdown__content" id="authDropdown"></ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="profile-section">
+            <div class="container">
+                <div class="profile-container" id="profileContainer">
+                    <!-- Динамически заполняется скриптом -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <p>&copy; 2024 The Floretics of Magic. Все права защищены.</p>
+                <ul class="footer__links">
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                    <li><a href="#">Доставка и оплата</a></li>
+                    <li><a href="#">Возврат товара</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Функция выхода
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        // Обновление меню авторизации
+        function updateAuthMenu() {
+            const dropdown = document.getElementById('authDropdown');
+            if (!dropdown) return;
+
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+            if (currentUser) {
+                dropdown.innerHTML = `
+                    <li><a href="#" style="font-weight: bold; color: #ff8c42;">👤 ${currentUser.name}</a></li>
+                    <li><a href="profile.html">Мой профиль</a></li>
+                    <li><a href="orders.html">Мои заказы</a></li>
+                    <li><a href="#" onclick="logout()">🚪 Выйти</a></li>
+                `;
+            } else {
+                dropdown.innerHTML = `
+                    <li><a href="register.html">🔑 Вход / Регистрация</a></li>
+                `;
+            }
+        }
+
+        // Загрузка профиля
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAuthMenu();
+
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const container = document.getElementById('profileContainer');
+
+            if (!currentUser) {
+                // Если не авторизован, показываем сообщение
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 4rem; background: white; border-radius: var(--border-radius);">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">🔒</div>
+                        <h2>Необходима авторизация</h2>
+                        <p style="margin: 1rem 0; color: var(--color-text-light);">Пожалуйста, войдите или зарегистрируйтесь</p>
+                        <a href="register.html" class="btn btn--primary">Войти / Регистрация</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Загружаем тестовые заказы (в реальном проекте брались бы из БД)
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            const userOrders = orders.filter(o => o.userId === currentUser.id);
+
+            let ordersHtml = '';
+            if (userOrders.length > 0) {
+                ordersHtml = '<h3 style="margin: 2rem 0 1rem;">Мои заказы</h3><div class="orders-list">';
+                userOrders.forEach(order => {
+                    ordersHtml += `
+                        <div class="order-item">
+                            <div class="order-header">
+                                <span class="order-number">Заказ №${order.id}</span>
+                                <span class="order-status ${order.status === 'delivered' ? 'status-delivered' : 'status-processing'}">
+                                    ${order.status === 'delivered' ? 'Доставлен' : 'В обработке'}
+                                </span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Дата: ${order.date}</span>
+                                <span class="order-total">${order.total} ₽</span>
+                            </div>
+                            <div style="color: var(--color-text-light); font-size: 0.9rem;">
+                                Товаров: ${order.items} шт.
+                            </div>
+                        </div>
+                    `;
+                });
+                ordersHtml += '</div>';
+            } else {
+                ordersHtml = `
+                    <div style="text-align: center; padding: 2rem; background: var(--color-card-bg); border-radius: var(--border-radius); margin-top: 2rem;">
+                        <p style="margin-bottom: 1rem;">У вас пока нет заказов</p>
+                        <a href="catalog.html" class="btn">Перейти в каталог</a>
+                    </div>
+                `;
+            }
+
+            // Отображаем профиль
+            container.innerHTML = `
+                <div class="profile-header">
+                    <div class="profile-avatar">👤</div>
+                    <h1>${currentUser.name}</h1>
+                    <p>${currentUser.email}</p>
+                </div>
+                <div class="profile-content">
+                    <div class="profile-info">
+                        <h2 style="margin-bottom: 1.5rem;">Личные данные</h2>
+                        <div class="info-row">
+                            <span class="info-label">Имя:</span>
+                            <span class="info-value">${currentUser.name}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Email:</span>
+                            <span class="info-value">${currentUser.email}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Телефон:</span>
+                            <span class="info-value">${currentUser.phone || 'Не указан'}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">ID пользователя:</span>
+                            <span class="info-value">#${currentUser.id}</span>
+                        </div>
+                    </div>
+
+                    ${ordersHtml}
+
+                    <div class="profile-actions">
+                        <a href="catalog.html" class="btn">Продолжить покупки</a>
+                        <a href="#" class="btn btn--secondary" onclick="logout()">Выйти</a>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,506 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Floretics of Magic - Регистрация</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .auth-section {
+            padding: 3rem 0;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .auth-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .auth-tabs {
+            display: flex;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 1.2rem;
+            text-align: center;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+            .auth-tab.active {
+                color: var(--color-primary);
+            }
+
+                .auth-tab.active::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background: var(--color-primary);
+                }
+
+        .auth-form {
+            padding: 2rem;
+            display: none;
+        }
+
+            .auth-form.active {
+                display: block;
+            }
+
+            .auth-form h2 {
+                color: var(--color-primary);
+                margin-bottom: 1.5rem;
+                text-align: center;
+            }
+
+            .auth-form .form-group {
+                margin-bottom: 1.2rem;
+            }
+
+            .auth-form label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+                color: var(--color-text);
+            }
+
+            .auth-form input {
+                width: 100%;
+                padding: 0.8rem 1rem;
+                border: 2px solid #f0f0f0;
+                border-radius: 8px;
+                font-family: inherit;
+                font-size: 1rem;
+                transition: var(--transition);
+            }
+
+                .auth-form input:focus {
+                    outline: none;
+                    border-color: var(--color-primary);
+                }
+
+        .password-hint {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            margin-top: 0.3rem;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f0f0f0;
+        }
+
+            .auth-footer a {
+                color: var(--color-primary);
+                text-decoration: none;
+                font-weight: 600;
+            }
+
+                .auth-footer a:hover {
+                    text-decoration: underline;
+                }
+
+        .error-message {
+            color: #ff0000;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .success-message {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-name {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            background: none;
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+            .logout-btn:hover {
+                background: var(--color-primary);
+                color: white;
+            }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__inner">
+                <div class="logo">
+                    <a href="index.html">🌸 The Floretics of Magic</a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="catalog.html" class="nav__link">Каталог</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="contacts.html" class="nav__link">Контакты</a></li>
+                        <li class="nav__item dropdown">
+                            <a href="#" class="nav__link">Личный кабинет</a>
+                            <ul class="dropdown__content" id="authDropdown">
+                                <!-- Динамически заполняется скриптом -->
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="auth-section">
+            <div class="container">
+                <div class="auth-container">
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" onclick="switchTab('login')">Вход</button>
+                        <button class="auth-tab" onclick="switchTab('register')">Регистрация</button>
+                    </div>
+
+                    <!-- Форма входа -->
+                    <div class="auth-form active" id="loginForm">
+                        <h2>Вход в личный кабинет</h2>
+                        <div class="success-message" id="loginSuccess"></div>
+                        <div class="error-message" id="loginError"></div>
+
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" id="loginEmail" placeholder="ivan@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loginPassword">Пароль</label>
+                            <input type="password" id="loginPassword" placeholder="********">
+                        </div>
+
+                        <button class="btn btn--primary btn--full" onclick="login()">Войти</button>
+
+                        <div class="auth-footer">
+                            Нет аккаунта? <a href="#" onclick="switchTab('register')">Зарегистрируйтесь</a>
+                        </div>
+                    </div>
+
+                    <!-- Форма регистрации -->
+                    <div class="auth-form" id="registerForm">
+                        <h2>Регистрация</h2>
+                        <div class="success-message" id="registerSuccess"></div>
+                        <div class="error-message" id="registerError"></div>
+
+                        <div class="form-group">
+                            <label for="regName">Имя *</label>
+                            <input type="text" id="regName" placeholder="Иван">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regEmail">Email *</label>
+                            <input type="email" id="regEmail" placeholder="ivan@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regPhone">Телефон</label>
+                            <input type="tel" id="regPhone" placeholder="+7 (999) 123-45-67">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regPassword">Пароль *</label>
+                            <input type="password" id="regPassword" placeholder="Минимум 6 символов">
+                            <div class="password-hint">Пароль должен содержать минимум 6 символов</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regConfirmPassword">Подтверждение пароля *</label>
+                            <input type="password" id="regConfirmPassword" placeholder="Повторите пароль">
+                        </div>
+
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="regAgree">
+                            <label for="regAgree">Я согласен на обработку персональных данных</label>
+                        </div>
+
+                        <button class="btn btn--primary btn--full" onclick="register()">Зарегистрироваться</button>
+
+                        <div class="auth-footer">
+                            Уже есть аккаунт? <a href="#" onclick="switchTab('login')">Войдите</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <p>&copy; 2024 The Floretics of Magic. Все права защищены.</p>
+                <ul class="footer__links">
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                    <li><a href="#">Доставка и оплата</a></li>
+                    <li><a href="#">Возврат товара</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Переключение между вкладками
+        function switchTab(tab) {
+            const tabs = document.querySelectorAll('.auth-tab');
+            const forms = document.querySelectorAll('.auth-form');
+
+            tabs.forEach(t => t.classList.remove('active'));
+            forms.forEach(f => f.classList.remove('active'));
+
+            if (tab === 'login') {
+                tabs[0].classList.add('active');
+                document.getElementById('loginForm').classList.add('active');
+            } else {
+                tabs[1].classList.add('active');
+                document.getElementById('registerForm').classList.add('active');
+            }
+
+            // Очищаем сообщения
+            document.getElementById('loginError').style.display = 'none';
+            document.getElementById('registerError').style.display = 'none';
+            document.getElementById('loginSuccess').style.display = 'none';
+            document.getElementById('registerSuccess').style.display = 'none';
+        }
+
+        // Функция регистрации
+        function register() {
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const phone = document.getElementById('regPhone').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            const agree = document.getElementById('regAgree').checked;
+
+            const errorDiv = document.getElementById('registerError');
+            const successDiv = document.getElementById('registerSuccess');
+
+            // Валидация
+            if (!name || !email || !password || !confirmPassword) {
+                showError('registerError', 'Пожалуйста, заполните все обязательные поля');
+                return;
+            }
+
+            if (password.length < 6) {
+                showError('registerError', 'Пароль должен содержать минимум 6 символов');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showError('registerError', 'Пароли не совпадают');
+                return;
+            }
+
+            if (!agree) {
+                showError('registerError', 'Необходимо согласие на обработку данных');
+                return;
+            }
+
+            // Проверка email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showError('registerError', 'Введите корректный email');
+                return;
+            }
+
+            // Получаем существующих пользователей
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Проверяем, не занят ли email
+            if (users.some(u => u.email === email)) {
+                showError('registerError', 'Пользователь с таким email уже существует');
+                return;
+            }
+
+            // Создаем нового пользователя
+            const newUser = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                phone: phone || '',
+                password: password, // В реальном проекте нужно хешировать!
+                registeredAt: new Date().toISOString()
+            };
+
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Показываем успех
+            successDiv.style.display = 'block';
+            successDiv.textContent = 'Регистрация прошла успешно! Теперь вы можете войти.';
+            errorDiv.style.display = 'none';
+
+            // Очищаем форму
+            document.getElementById('regName').value = '';
+            document.getElementById('regEmail').value = '';
+            document.getElementById('regPhone').value = '';
+            document.getElementById('regPassword').value = '';
+            document.getElementById('regConfirmPassword').value = '';
+            document.getElementById('regAgree').checked = false;
+
+            // Переключаем на вкладку входа через 2 секунды
+            setTimeout(() => {
+                switchTab('login');
+            }, 2000);
+        }
+
+        // Функция входа
+        function login() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            const errorDiv = document.getElementById('loginError');
+            const successDiv = document.getElementById('loginSuccess');
+
+            if (!email || !password) {
+                showError('loginError', 'Заполните все поля');
+                return;
+            }
+
+            // Получаем пользователей
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Ищем пользователя
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                // Сохраняем текущего пользователя
+                localStorage.setItem('currentUser', JSON.stringify({
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    phone: user.phone
+                }));
+
+                successDiv.style.display = 'block';
+                successDiv.textContent = 'Вход выполнен успешно! Перенаправляем...';
+                errorDiv.style.display = 'none';
+
+                // Обновляем меню
+                updateAuthMenu();
+
+                // Перенаправляем на главную через 1 секунду
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            } else {
+                showError('loginError', 'Неверный email или пароль');
+            }
+        }
+
+        // Функция выхода
+        function logout() {
+            localStorage.removeItem('currentUser');
+            updateAuthMenu();
+
+            // Если мы на странице личного кабинета, перенаправляем на главную
+            if (window.location.pathname.includes('register.html')) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Обновление меню авторизации
+        function updateAuthMenu() {
+            const dropdown = document.getElementById('authDropdown');
+            if (!dropdown) return;
+
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+            if (currentUser) {
+                dropdown.innerHTML = `
+                    <li><a href="#" style="font-weight: bold; color: #ff8c42;">👤 ${currentUser.name}</a></li>
+                    <li><a href="profile.html">Мой профиль</a></li>
+                    <li><a href="orders.html">Мои заказы</a></li>
+                    <li><a href="#" onclick="logout()">🚪 Выйти</a></li>
+                `;
+            } else {
+                dropdown.innerHTML = `
+                    <li><a href="register.html">🔑 Вход / Регистрация</a></li>
+                `;
+            }
+        }
+
+        // Проверка авторизации при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAuthMenu();
+
+            // Если пользователь уже авторизован и пытается зайти на страницу регистрации
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser && window.location.pathname.includes('register.html')) {
+                // Показываем сообщение, что он уже авторизован
+                const container = document.querySelector('.auth-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div style="padding: 3rem; text-align: center;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">👤</div>
+                            <h2>Вы уже авторизованы</h2>
+                            <p style="margin: 1rem 0; color: var(--color-text-light);">Вы вошли как <strong>${currentUser.name}</strong></p>
+                            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                                <a href="index.html" class="btn">На главную</a>
+                                <a href="#" class="btn btn--secondary" onclick="logout(); window.location.reload();">Выйти</a>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        });
+
+        // Вспомогательная функция для показа ошибок
+        function showError(elementId, message) {
+            const errorDiv = document.getElementById(elementId);
+            errorDiv.style.display = 'block';
+            errorDiv.textContent = message;
+
+            // Скрываем успех
+            const successId = elementId === 'loginError' ? 'loginSuccess' : 'registerSuccess';
+            document.getElementById(successId).style.display = 'none';
+        }
+    </script>
+</body>
+</html>

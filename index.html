@@ -1,0 +1,716 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Floretics of Magic - Главная</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Дополнительные стили для главной */
+        .hero {
+            background: linear-gradient(135deg, rgba(255, 140, 66, 0.9), rgba(255, 111, 97, 0.9)), url('../images/hero-bg.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+            margin-bottom: 3rem;
+        }
+
+            .hero h1 {
+                font-size: 3.5rem;
+                margin-bottom: 1rem;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            }
+
+        .hero__subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-accent);
+            font-style: italic;
+        }
+
+        .hero__text {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Категории */
+        .categories {
+            padding: 4rem 0;
+        }
+
+        .categories__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .category-card {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            height: 200px;
+            cursor: pointer;
+        }
+
+            .category-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+
+            .category-card:hover img {
+                transform: scale(1.1);
+            }
+
+        .category-card__overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        /* Акции */
+        .promo-banner {
+            background: linear-gradient(135deg, #ff8c42, #ff6f61);
+            color: white;
+            padding: 4rem 0;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+            .promo-banner h2 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .promo-banner p {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        .promo-timer {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .timer-block {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            min-width: 100px;
+        }
+
+        .timer-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .timer-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Новинки */
+        .new-arrivals {
+            padding: 4rem 0;
+            background: var(--color-card-bg);
+        }
+
+        .new-arrivals__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .new-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+            .new-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(255,140,66,0.2);
+            }
+
+            .new-card img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+            }
+
+        .new-card__content {
+            padding: 1.5rem;
+        }
+
+        .new-card__title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .new-card__price {
+            color: var(--color-primary);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        /* Отзывы */
+        .testimonials {
+            padding: 4rem 0;
+        }
+
+        .testimonials__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            border: 1px solid #f0f0f0;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--color-secondary);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--color-primary);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--color-text-light);
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .testimonial-rating {
+            color: #ffc107;
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Блог */
+        .blog {
+            padding: 4rem 0;
+            background: var(--color-card-bg);
+        }
+
+        .blog__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+            .blog-card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+        .blog-card__content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-excerpt {
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .blog-link {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+            .blog-link:hover {
+                text-decoration: underline;
+            }
+
+        /* Преимущества */
+        .features {
+            padding: 3rem 0;
+        }
+
+        .features__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Подписка */
+        .newsletter {
+            background: linear-gradient(135deg, #f8f9fa, #fff);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+            .newsletter h2 {
+                color: var(--color-primary);
+                margin-bottom: 1rem;
+            }
+
+            .newsletter p {
+                max-width: 600px;
+                margin: 0 auto 2rem;
+                color: var(--color-text-light);
+            }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+            .newsletter-form input {
+                flex: 1;
+                padding: 1rem;
+                border: 2px solid #eee;
+                border-radius: 30px;
+                font-family: inherit;
+            }
+
+                .newsletter-form input:focus {
+                    outline: none;
+                    border-color: var(--color-primary);
+                }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .categories__grid,
+            .new-arrivals__grid,
+            .testimonials__grid,
+            .blog__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .categories__grid,
+            .new-arrivals__grid,
+            .testimonials__grid,
+            .blog__grid,
+            .features__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .promo-timer {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                padding: 0 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__inner">
+                <div class="logo">
+                    <a href="index.html">🌸 The Floretics of Magic</a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link active">Главная</a></li>
+                        <li class="nav__item"><a href="catalog.html" class="nav__link">Каталог</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="contacts.html" class="nav__link">Контакты</a></li>
+                        <li class="nav__item dropdown">
+                            <a href="#" class="nav__link">Ещё</a>
+                            <ul class="dropdown__content">
+                                <li><a href="#">Доставка</a></li>
+                                <li><a href="#">Оплата</a></li>
+                                <li><a href="#">Отзывы</a></li>
+                                <li><a href="#">Блог</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Герой секция -->
+        <section class="hero">
+            <div class="container">
+                <h1>The Floretics of Magic</h1>
+                <p class="hero__subtitle">Расцветайте вместе с нашими букетами!</p>
+                <p class="hero__text">"Волшебство флоретики" — это место, где цветы оживают, рассказывая истории без слов. Здесь каждый букет — это маленькое чудо, созданное, чтобы передать ваши самые искренние чувства. Откройте для себя магию на "The Floretics of Magic".</p>
+                <a href="catalog.html" class="btn btn--primary">Смотреть каталог</a>
+            </div>
+        </section>
+
+        <!-- Категории -->
+        <section class="categories">
+            <div class="container">
+                <h2 class="section-title">Популярные категории</h2>
+                <div class="categories__grid">
+                    <div class="category-card">
+                        <img src="images/category-wedding.jpg" alt="Свадебные букеты">
+                        <div class="category-card__overlay">Свадебные</div>
+                    </div>
+                    <div class="category-card">
+                        <img src="images/category-birthday.jpg" alt="На день рождения">
+                        <div class="category-card__overlay">День рождения</div>
+                    </div>
+                    <div class="category-card">
+                        <img src="images/category-romantic.jpg" alt="Романтические">
+                        <div class="category-card__overlay">Романтические</div>
+                    </div>
+                    <div class="category-card">
+                        <img src="images/category-corporate.jpg" alt="Корпоративные">
+                        <div class="category-card__overlay">Корпоративные</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Акция с таймером -->
+        <section class="promo-banner">
+            <div class="container">
+                <h2>🌸 Весенняя распродажа 🌸</h2>
+                <p>Скидка до 30% на все букеты! Успейте заказать по выгодной цене.</p>
+                <div class="promo-timer">
+                    <div class="timer-block">
+                        <div class="timer-number" id="days">03</div>
+                        <div class="timer-label">Дней</div>
+                    </div>
+                    <div class="timer-block">
+                        <div class="timer-number" id="hours">12</div>
+                        <div class="timer-label">Часов</div>
+                    </div>
+                    <div class="timer-block">
+                        <div class="timer-number" id="minutes">45</div>
+                        <div class="timer-label">Минут</div>
+                    </div>
+                    <div class="timer-block">
+                        <div class="timer-number" id="seconds">30</div>
+                        <div class="timer-label">Секунд</div>
+                    </div>
+                </div>
+                <a href="catalog.html" class="btn btn--primary" style="margin-top: 2rem; background: white; color: #ff8c42;">Выбрать букет</a>
+            </div>
+        </section>
+
+        <!-- Новинки -->
+        <section class="new-arrivals">
+            <div class="container">
+                <h2 class="section-title">Новинки сезона</h2>
+                <div class="new-arrivals__grid">
+                    <div class="new-card">
+                        <img src="images/new-1.jpg" alt="Весенний бриз">
+                        <div class="new-card__content">
+                            <h3 class="new-card__title">Весенний бриз</h3>
+                            <p style="color: var(--color-text-light); margin-bottom: 0.5rem;">Тюльпаны и нарциссы</p>
+                            <span class="new-card__price">2900 ₽</span>
+                        </div>
+                    </div>
+                    <div class="new-card">
+                        <img src="images/new-2.jpg" alt="Лавандовый рай">
+                        <div class="new-card__content">
+                            <h3 class="new-card__title">Лавандовый рай</h3>
+                            <p style="color: var(--color-text-light); margin-bottom: 0.5rem;">Лаванда и гипсофила</p>
+                            <span class="new-card__price">3400 ₽</span>
+                        </div>
+                    </div>
+                    <div class="new-card">
+                        <img src="images/new-3.jpg" alt="Сказочный сад">
+                        <div class="new-card__content">
+                            <h3 class="new-card__title">Сказочный сад</h3>
+                            <p style="color: var(--color-text-light); margin-bottom: 0.5rem;">Пионы и розы</p>
+                            <span class="new-card__price">4200 ₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Преимущества -->
+        <section class="features">
+            <div class="container">
+                <div class="features__grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🚚</div>
+                        <h3>Быстрая доставка</h3>
+                        <p>Доставим за 2 часа по Москве</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💐</div>
+                        <h3>Свежесть гарантируем</h3>
+                        <p>Цветы срезаются в день заказа</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎁</div>
+                        <h3>Открытка в подарок</h3>
+                        <p>Бесплатно подпишем вашу открытку</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌿</div>
+                        <h3>Эко упаковка</h3>
+                        <p>Только перерабатываемые материалы</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Популярные товары (из предыдущей версии) -->
+        <section class="popular">
+            <div class="container">
+                <h2 class="section-title">Популярные букеты</h2>
+                <div class="grid grid--3col">
+                    <article class="card">
+                        <img src="images/bouquet-1.jpg" alt="Букет Нежное утро" class="card__img">
+                        <div class="card__content">
+                            <h3 class="card__title">Нежное утро</h3>
+                            <p class="card__desc">Букет из пионов и розовых роз</p>
+                            <span class="card__price">3500 ₽</span>
+                            <a href="order.html" class="btn">Заказать</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="images/bouquet-2.jpg" alt="Букет Летний бриз" class="card__img">
+                        <div class="card__content">
+                            <h3 class="card__title">Летний бриз</h3>
+                            <p class="card__desc">Ромашки, васильки, лаванда</p>
+                            <span class="card__price">2200 ₽</span>
+                            <a href="order.html" class="btn">Заказать</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="images/bouquet-3.jpg" alt="Букет Признание" class="card__img">
+                        <div class="card__content">
+                            <h3 class="card__title">Признание</h3>
+                            <p class="card__desc">15 красных роз</p>
+                            <span class="card__price">4500 ₽</span>
+                            <a href="order.html" class="btn">Заказать</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Отзывы -->
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">Что говорят наши клиенты</h2>
+                <div class="testimonials__grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">👩</div>
+                        <div class="testimonial-text">"Заказывала букет на годовщину. Цветы свежайшие, доставили точно вовремя. Очень довольна!"</div>
+                        <div class="testimonial-name">Анна</div>
+                        <div class="testimonial-rating">★★★★★</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">👨</div>
+                        <div class="testimonial-text">"Отличный сервис! Помогли выбрать букет для мамы, она была в восторге. Спасибо!"</div>
+                        <div class="testimonial-name">Дмитрий</div>
+                        <div class="testimonial-rating">★★★★★</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">👩‍🦰</div>
+                        <div class="testimonial-text">"Заказываю здесь уже не первый раз. Всегда свежие цветы, красивая упаковка. Рекомендую!"</div>
+                        <div class="testimonial-name">Елена</div>
+                        <div class="testimonial-rating">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Блог -->
+        <section class="blog">
+            <div class="container">
+                <h2 class="section-title">Полезные статьи</h2>
+                <div class="blog__grid">
+                    <div class="blog-card">
+                        <img src="images/blog-1.jpg" alt="Как ухаживать за букетом">
+                        <div class="blog-card__content">
+                            <div class="blog-date">15 марта 2024</div>
+                            <h3 class="blog-title">Как продлить жизнь букету</h3>
+                            <p class="blog-excerpt">Простые советы, которые помогут сохранить цветы свежими надолго...</p>
+                            <a href="#" class="blog-link">Читать далее →</a>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="images/blog-2.jpg" alt="Что означают цветы">
+                        <div class="blog-card__content">
+                            <div class="blog-date">10 марта 2024</div>
+                            <h3 class="blog-title">Язык цветов: что выбрать</h3>
+                            <p class="blog-excerpt">Значение цветов и как подобрать идеальный букет для любого случая...</p>
+                            <a href="#" class="blog-link">Читать далее →</a>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="images/blog-3.jpg" alt="Свадебная флористика">
+                        <div class="blog-card__content">
+                            <div class="blog-date">5 марта 2024</div>
+                            <h3 class="blog-title">Тренды свадебных букетов</h3>
+                            <p class="blog-excerpt">Модные тенденции в свадебной флористике этого сезона...</p>
+                            <a href="#" class="blog-link">Читать далее →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Подписка -->
+        <section class="newsletter">
+            <div class="container">
+                <h2>Подпишитесь на новости</h2>
+                <p>Получайте информацию о новых поступлениях и специальных предложениях первыми</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Ваш email" required>
+                    <button type="submit" class="btn btn--primary">Подписаться</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <p>&copy; 2024 The Floretics of Magic. Все права защищены.</p>
+                <ul class="footer__links">
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                    <li><a href="#">Доставка и оплата</a></li>
+                    <li><a href="#">Возврат товара</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Скрипт для изменения шапки при скролле
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Таймер обратного отсчета
+        function updateTimer() {
+            // Устанавливаем дату окончания акции (через 3 дня от текущей даты)
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 3);
+            endDate.setHours(23, 59, 59);
+
+            const now = new Date();
+            const diff = endDate - now;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+        }
+
+        // Обновляем таймер каждую секунду
+        updateTimer();
+        setInterval(updateTimer, 1000);
+
+        // Обработка подписки
+        document.querySelector('.newsletter-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Спасибо за подписку! Мы будем присылать вам только самое интересное.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

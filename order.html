@@ -1,0 +1,619 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Floretics of Magic - Оформление заказа</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Дополнительные стили для корзины */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+            .cart-item:last-child {
+                border-bottom: none;
+            }
+
+        .cart-item__info {
+            flex: 1;
+        }
+
+        .cart-item__title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item__price {
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        .cart-item__quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 0 1rem;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid var(--color-primary);
+            background: white;
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+            .quantity-btn:hover {
+                background: var(--color-primary);
+                color: white;
+            }
+
+        .quantity-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .cart-item__remove {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #999;
+            padding: 0.5rem;
+            transition: var(--transition);
+        }
+
+            .cart-item__remove:hover {
+                color: #ff0000;
+                transform: scale(1.1);
+            }
+
+        .cart-empty {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .cart-empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .cart-empty-text {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-empty-subtext a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+            .cart-empty-subtext a:hover {
+                text-decoration: underline;
+            }
+
+        .cart-totals {
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 2px dashed #ddd;
+            border-bottom: 2px dashed #ddd;
+        }
+
+        .cart-subtotal,
+        .cart-delivery,
+        .cart-discount,
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .cart-discount {
+            color: #4CAF50;
+        }
+
+        .promo-input {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+            .promo-input input {
+                flex: 1;
+                padding: 0.8rem;
+                border: 2px solid #eee;
+                border-radius: 8px;
+                font-family: inherit;
+            }
+
+                .promo-input input:focus {
+                    outline: none;
+                    border-color: var(--color-primary);
+                }
+
+        .promo-message {
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        .cart-info {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+        }
+
+            .cart-info p {
+                margin-bottom: 0.5rem;
+                color: var(--color-text-light);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+                .cart-info p::before {
+                    content: '✓';
+                    color: #4CAF50;
+                    font-weight: bold;
+                }
+
+        .cart-contact {
+            margin-top: 1.5rem;
+            text-align: center;
+            padding: 1rem;
+            background: var(--color-secondary);
+            border-radius: 8px;
+        }
+
+        .contact-phone {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+            .contact-phone:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__inner">
+                <div class="logo">
+                    <a href="index.html">🌸 The Floretics of Magic</a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="catalog.html" class="nav__link">Каталог</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="contacts.html" class="nav__link">Контакты</a></li>
+                        <li class="nav__item dropdown">
+                            <a href="#" class="nav__link">Услуги</a>
+                            <ul class="dropdown__content">
+                                <li><a href="#">Оформление</a></li>
+                                <li><a href="#">Доставка</a></li>
+                                <li><a href="#">Консультация</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Заголовок страницы -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title">Оформление заказа</h1>
+                <p class="page-subtitle">Заполните форму, и мы свяжемся с вами для подтверждения</p>
+            </div>
+        </section>
+
+        <!-- Форма заказа -->
+        <section class="order-section">
+            <div class="container">
+                <div class="order-grid">
+                    <!-- Левая колонка - форма -->
+                    <div class="order-form-container">
+                        <h2 class="order-form__title">Данные получателя</h2>
+                        <form action="#" method="post" class="order-form" id="orderForm">
+                            <div class="form-row">
+                                <div class="form-group half">
+                                    <label for="order-name">Имя *</label>
+                                    <input type="text" id="order-name" name="name" placeholder="Иван" required>
+                                </div>
+                                <div class="form-group half">
+                                    <label for="order-phone">Телефон *</label>
+                                    <input type="tel" id="order-phone" name="phone" placeholder="+7 (999) 123-45-67" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="order-email">Email</label>
+                                <input type="email" id="order-email" name="email" placeholder="ivan@example.com">
+                            </div>
+
+                            <h2 class="order-form__title">Адрес доставки</h2>
+                            <div class="form-group">
+                                <label for="order-city">Город *</label>
+                                <input type="text" id="order-city" name="city" value="Москва" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group half">
+                                    <label for="order-street">Улица *</label>
+                                    <input type="text" id="order-street" name="street" placeholder="Цветочная" required>
+                                </div>
+                                <div class="form-group half">
+                                    <label for="order-house">Дом *</label>
+                                    <input type="text" id="order-house" name="house" placeholder="15" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group third">
+                                    <label for="order-apartment">Квартира</label>
+                                    <input type="text" id="order-apartment" name="apartment" placeholder="42">
+                                </div>
+                                <div class="form-group third">
+                                    <label for="order-floor">Этаж</label>
+                                    <input type="text" id="order-floor" name="floor" placeholder="5">
+                                </div>
+                                <div class="form-group third">
+                                    <label for="order-code">Код домофона</label>
+                                    <input type="text" id="order-code" name="code" placeholder="1234">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="order-comment">Комментарий к заказу</label>
+                                <textarea id="order-comment" name="comment" rows="3" placeholder="Пожелания по доставке, время, открытка..."></textarea>
+                            </div>
+
+                            <h2 class="order-form__title">Способ оплаты</h2>
+                            <div class="payment-options">
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="cash" checked>
+                                    <span>Наличными курьеру</span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="card">
+                                    <span>Картой онлайн</span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="transfer">
+                                    <span>Перевод на карту</span>
+                                </label>
+                            </div>
+
+                            <div class="form-group checkbox">
+                                <input type="checkbox" id="order-agree" required>
+                                <label for="order-agree">Я согласен с условиями обработки персональных данных</label>
+                            </div>
+
+                            <button type="submit" class="btn btn--primary btn--full" id="submitOrder">Подтвердить заказ</button>
+                        </form>
+                    </div>
+
+                    <!-- Правая колонка - КОРЗИНА -->
+                    <div class="order-cart">
+                        <h2 class="order-cart__title">Ваш заказ</h2>
+
+                        <!-- Пустая корзина (будет показана, если нет товаров) -->
+                        <div class="cart-empty" id="cartEmpty">
+                            <div class="cart-empty-icon">🛒</div>
+                            <p class="cart-empty-text">Ваша корзина пуста</p>
+                            <p class="cart-empty-subtext">Добавьте букеты из <a href="catalog.html">каталога</a></p>
+                        </div>
+
+                        <!-- Контейнер для товаров -->
+                        <div class="cart-items" id="cartItems"></div>
+
+                        <!-- Итоги корзины -->
+                        <div class="cart-totals" id="cartTotals">
+                            <div class="cart-subtotal">
+                                <span>Товары:</span>
+                                <span id="subtotal">0 ₽</span>
+                            </div>
+                            <div class="cart-delivery">
+                                <span>Доставка:</span>
+                                <span id="delivery">Бесплатно</span>
+                            </div>
+                            <div class="cart-total">
+                                <span>Итого:</span>
+                                <span id="total">0 ₽</span>
+                            </div>
+                        </div>
+
+                        <!-- Промокод -->
+                        <div class="cart-promo" id="cartPromo">
+                            <p>Есть промокод?</p>
+                            <div class="promo-input">
+                                <input type="text" id="promoCode" placeholder="Введите промокод">
+                                <button class="btn btn--small" id="applyPromo">Применить</button>
+                            </div>
+                            <div class="promo-message" id="promoMessage"></div>
+                        </div>
+
+                        <!-- Преимущества -->
+                        <div class="cart-info">
+                            <p>Бесплатная доставка от 3000 ₽</p>
+                            <p>Свежесть гарантируем</p>
+                            <p>Открытка в подарок</p>
+                        </div>
+
+                        <!-- Контактный телефон -->
+                        <div class="cart-contact">
+                            <p><strong>Свяжитесь с нами:</strong></p>
+                            <a href="tel:+78005555555" class="contact-phone">+7 (800) 555-55-55</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Сообщение об успешном заказе -->
+        <div class="success-message" id="orderSuccess" style="display: none;">
+            <div class="success-icon">✅</div>
+            <h3>Заказ оформлен!</h3>
+            <p>Спасибо за ваш заказ. Мы свяжемся с вами в ближайшее время для подтверждения.</p>
+            <a href="index.html" class="btn">Вернуться на главную</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <p>&copy; 2024 The Floretics of Magic. Все права защищены.</p>
+                <ul class="footer__links">
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                    <li><a href="#">Доставка и оплата</a></li>
+                    <li><a href="#">Возврат товара</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Скрипт для изменения шапки при скролле
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // ===== РАБОТА С КОРЗИНОЙ (ЗАГРУЗКА ИЗ localStorage) =====
+
+        // Загружаем корзину из localStorage
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+        let appliedPromo = null;
+        const promoCodes = {
+            'FLOWER10': 10,
+            'FLOWER20': 20,
+            'WELCOME': 15
+        };
+
+        // Функция сохранения корзины в localStorage
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+        }
+
+        // Функция обновления отображения корзины
+        function updateCartDisplay() {
+            const cartEmpty = document.getElementById('cartEmpty');
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartTotals = document.getElementById('cartTotals');
+            const cartPromo = document.getElementById('cartPromo');
+
+            if (cartItems.length === 0) {
+                // Показываем пустую корзину
+                cartEmpty.style.display = 'block';
+                cartItemsDiv.style.display = 'none';
+                cartTotals.style.display = 'none';
+                cartPromo.style.display = 'none';
+                return;
+            }
+
+            // Скрываем пустую корзину, показываем товары
+            cartEmpty.style.display = 'none';
+            cartItemsDiv.style.display = 'block';
+            cartTotals.style.display = 'block';
+            cartPromo.style.display = 'block';
+
+            // Очищаем и перестраиваем список товаров
+            cartItemsDiv.innerHTML = '';
+
+            cartItems.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.dataset.id = item.id;
+                itemDiv.innerHTML = `
+                        <div class="cart-item__info">
+                            <div class="cart-item__title">${item.name}</div>
+                            <div class="cart-item__price">${item.price} ₽</div>
+                        </div>
+                        <div class="cart-item__quantity-controls">
+                            <button class="quantity-btn minus" data-id="${item.id}">−</button>
+                            <span class="quantity-value" id="quantity-${item.id}">${item.quantity}</span>
+                            <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                        </div>
+                        <button class="cart-item__remove" data-id="${item.id}">✕</button>
+                    `;
+                cartItemsDiv.appendChild(itemDiv);
+            });
+
+            // Добавляем обработчики для новых кнопок
+            document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const id = parseInt(this.dataset.id);
+                    const item = cartItems.find(item => item.id === id);
+                    if (item) {
+                        item.quantity++;
+                        saveCart();
+                        updateCartDisplay();
+                    }
+                });
+            });
+
+            document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const id = parseInt(this.dataset.id);
+                    const item = cartItems.find(item => item.id === id);
+                    if (item && item.quantity > 1) {
+                        item.quantity--;
+                        saveCart();
+                        updateCartDisplay();
+                    }
+                });
+            });
+
+            document.querySelectorAll('.cart-item__remove').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const id = parseInt(this.dataset.id);
+                    cartItems = cartItems.filter(item => item.id !== id);
+                    saveCart();
+                    updateCartDisplay();
+                });
+            });
+
+            // Рассчитываем суммы
+            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const delivery = subtotal >= 3000 ? 0 : 300;
+            const discount = appliedPromo ? Math.round(subtotal * (appliedPromo / 100)) : 0;
+            const total = subtotal - discount + (delivery === 0 ? 0 : delivery);
+
+            // Обновляем отображение
+            document.getElementById('subtotal').textContent = subtotal.toLocaleString() + ' ₽';
+
+            if (delivery === 0) {
+                document.getElementById('delivery').textContent = 'Бесплатно';
+            } else {
+                document.getElementById('delivery').textContent = delivery + ' ₽';
+            }
+
+            // Показываем скидку, если есть
+            const oldDiscount = document.getElementById('discount');
+            if (oldDiscount) oldDiscount.remove();
+
+            if (discount > 0) {
+                const discountElement = document.createElement('div');
+                discountElement.id = 'discount';
+                discountElement.className = 'cart-discount';
+                discountElement.innerHTML = `<span>Скидка (${appliedPromo}%):</span><span>-${discount.toLocaleString()} ₽</span>`;
+
+                const totalsDiv = document.querySelector('.cart-totals');
+                totalsDiv.insertBefore(discountElement, document.querySelector('.cart-total'));
+            }
+
+            document.getElementById('total').textContent = total.toLocaleString() + ' ₽';
+        }
+
+        // Обработчик для промокода
+        document.getElementById('applyPromo')?.addEventListener('click', function () {
+            if (cartItems.length === 0) {
+                alert('Сначала добавьте товары в корзину');
+                return;
+            }
+
+            const promoInput = document.getElementById('promoCode');
+            const promoMessage = document.getElementById('promoMessage');
+            const code = promoInput.value.trim().toUpperCase();
+
+            if (promoCodes[code]) {
+                appliedPromo = promoCodes[code];
+                promoMessage.textContent = `Промокод применен! Скидка ${appliedPromo}%`;
+                promoMessage.style.color = '#4CAF50';
+                updateCartDisplay();
+            } else {
+                promoMessage.textContent = 'Неверный промокод';
+                promoMessage.style.color = '#ff0000';
+            }
+        });
+
+        // Обработчик отправки формы заказа
+        document.getElementById('orderForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Проверка, что корзина не пуста
+            if (cartItems.length === 0) {
+                alert('Ваша корзина пуста. Добавьте букеты из каталога.');
+                return;
+            }
+
+            // Проверка заполнения обязательных полей
+            const name = document.getElementById('order-name').value;
+            const phone = document.getElementById('order-phone').value;
+            const street = document.getElementById('order-street').value;
+            const house = document.getElementById('order-house').value;
+            const agree = document.getElementById('order-agree').checked;
+
+            if (!name || !phone || !street || !house || !agree) {чч
+                alert('Пожалуйста, заполните все обязательные поля');
+                return;
+            }
+
+            // Проверка телефона (простая)
+            if (phone.replace(/[^\d]/g, '').length < 10) {
+                alert('Введите корректный номер телефона');
+                return;
+            }
+
+            // Очищаем корзину после успешного заказа
+            localStorage.removeItem('cart');
+
+            // Скрываем форму и показываем сообщение об успехе
+            document.querySelector('.order-section').style.display = 'none';
+            document.getElementById('orderSuccess').style.display = 'block';
+        });
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartDisplay();
+
+            // Если есть товары в корзине, показываем их
+            console.log('Загружено товаров из localStorage:', cartItems.length);
+        });
+    </script>
+</body>
+
+</html>

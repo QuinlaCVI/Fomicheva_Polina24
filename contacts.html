@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Floretics of Magic - Контакты</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__inner">
+                <div class="logo">
+                    <a href="index.html">🌸 The Floretics of Magic</a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="catalog.html" class="nav__link">Каталог</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="contacts.html" class="nav__link active">Контакты</a></li>
+                        <li class="nav__item dropdown">
+                            <a href="#" class="nav__link">Услуги</a>
+                            <ul class="dropdown__content">
+                                <li><a href="design.html">Оформление</a></li>
+                                <li><a href="delivery.html">Доставка</a></li>
+                                <li><a href="consultation.html">Консультация</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Заголовок страницы -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title">Контакты</h1>
+                <p class="page-subtitle">Свяжитесь с нами любым удобным способом</p>
+            </div>
+        </section>
+
+        <!-- Контактная информация и форма -->
+        <section class="contacts-section">
+            <div class="container">
+                <div class="contacts-grid">
+                    <!-- Левая колонка - контактная информация (ОДИН РАЗ) -->
+                    <div class="contacts-info">
+                        <h2 class="contacts-info__title">Как нас найти</h2>
+
+                        <div class="contact-block">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-details">
+                                <h4>Адрес студии</h4>
+                                <p>г. Москва, ул. Цветочная, д. 15</p>
+                                <p class="contact-sub">м. "Ботанический сад" (5 мин пешком)</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-block">
+                            <div class="contact-icon">🕒</div>
+                            <div class="contact-details">
+                                <h4>Режим работы</h4>
+                                <p>Пн-Пт: 9:00 - 21:00</p>
+                                <p>Сб-Вс: 10:00 - 20:00</p>
+                                <p class="contact-sub">Принимаем заказы круглосуточно на сайте</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-block">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-details">
+                                <h4>Телефоны</h4>
+                                <p><a href="tel:+74951234567" class="contact-phone">+7 (495) 123-45-67</a></p>
+                                <p><a href="tel:+79876543210" class="contact-phone">+7 (987) 654-32-10</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-block">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p><a href="mailto:info@floretics.ru" class="contact-email">info@floretics.ru</a></p>
+                                <p><a href="mailto:order@floretics.ru" class="contact-email">order@floretics.ru</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-block">
+                            <div class="contact-icon">💬</div>
+                            <div class="contact-details">
+                                <h4>Мессенджеры</h4>
+                                <div class="messenger-links">
+                                    <a href="https://t.me/floretics" target="_blank" class="messenger-link">Telegram</a>
+                                    <a href="https://wa.me/79876543210" target="_blank" class="messenger-link">WhatsApp</a>
+                                    <a href="viber://chat?number=79876543210" target="_blank" class="messenger-link">Viber</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <h4>Мы в соцсетях</h4>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon">📷</a>
+                                <a href="#" class="social-icon">📱</a>
+                                <a href="#" class="social-icon">💬</a>
+                                <a href="#" class="social-icon">▶️</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Правая колонка - форма обратной связи -->
+                    <div class="contacts-form">
+                        <h2 class="contacts-form__title">Напишите нам</h2>
+                        <form action="#" method="post" class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Ваше имя *</label>
+                                <input type="text" id="name" name="name" placeholder="Иван" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group half">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" placeholder="ivan@example.com" required>
+                                </div>
+                                <div class="form-group half">
+                                    <label for="phone">Телефон</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Тема обращения</label>
+                                <select id="subject" name="subject">
+                                    <option value="question">❓ Вопрос о букете</option>
+                                    <option value="order">📦 Заказ</option>
+                                    <option value="collaboration">🤝 Сотрудничество</option>
+                                    <option value="other">💭 Другое</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Сообщение *</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Ваше сообщение..." required></textarea>
+                            </div>
+
+                            <div class="form-group checkbox">
+                                <input type="checkbox" id="agree" required>
+                                <label for="agree">Я согласен на обработку персональных данных</label>
+                            </div>
+
+                            <button type="submit" class="btn btn--primary btn--full" id="submitBtn">Отправить сообщение</button>
+                        </form>
+
+                        <div class="success-message" id="successMessage" style="display: none;">
+                            <div class="success-icon">✅</div>
+                            <h3>Сообщение отправлено!</h3>
+                            <p>Мы свяжемся с вами в ближайшее время</p>
+                            <button class="btn" onclick="hideSuccessMessage()">Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Карта -->
+        <section class="map-section">
+            <div class="container">
+                <h2 class="section-title">Мы на карте</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.123456789!2d37.6!3d55.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTXCsDQyJzAwLjAiTiAzN8KwMzYnMDAuMCJF!5e0!3m2!1sru!2sru!4v1234567890" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <p>&copy; 2024 The Floretics of Magic. Все права защищены.</p>
+                <ul class="footer__links">
+                    <li><a href="policy.html">Политика конфиденциальности</a></li>
+                    <li><a href="delivery.html">Доставка и оплата</a></li>
+                    <li><a href="return.html">Возврат товара</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Форма обратной связи
+        document.getElementById('contactForm')?.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+        });
+
+        function hideSuccessMessage() {
+            document.getElementById('contactForm').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+</body>
+</html>
+</html>

@@ -1,0 +1,437 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Floretics of Magic - Каталог</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__inner">
+                <div class="logo">
+                    <a href="index.html">🌸 The Floretics of Magic</a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="catalog.html" class="nav__link active">Каталог</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="contacts.html" class="nav__link">Контакты</a></li>
+                        <li class="nav__item dropdown">
+                            <a href="#" class="nav__link">Услуги</a>
+                            <ul class="dropdown__content">
+                                <li><a href="#">Оформление</a></li>
+                                <li><a href="#">Доставка</a></li>
+                                <li><a href="#">Консультация</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Заголовок страницы -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title">Наши букеты</h1>
+                <p class="page-subtitle">Выберите идеальный букет для любого случая</p>
+            </div>
+        </section>
+
+        <!-- Фильтры категорий -->
+        <section class="filters">
+            <div class="container">
+                <div class="filters__inner">
+                    <button class="filter-btn active" data-filter="all">Все букеты</button>
+                    <button class="filter-btn" data-filter="wedding">Свадебные</button>
+                    <button class="filter-btn" data-filter="birthday">День рождения</button>
+                    <button class="filter-btn" data-filter="romantic">Романтические</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Каталог товаров -->
+        <section class="catalog">
+            <div class="container">
+                <div class="grid grid--3col" id="catalogGrid">
+                    <!-- Карточка 1 - Нежное утро -->
+                    <article class="card" data-category="romantic" data-id="1" data-name="Нежное утро" data-price="3500">
+                        <img src="images/bouquet-1.jpg" alt="Букет Нежное утро из розовых пионов" class="card__img">
+                        <div class="card__content">
+                            <h3 class="card__title">Нежное утро</h3>
+                            <p class="card__desc">Букет из пионов и розовых роз. Идеальный подарок для любимых.</p>
+                            <div class="card__details">
+                                <span class="card__price">3500 ₽</span>
+                                <span class="card__badge">Хит</span>
+                            </div>
+                            <div class="card__actions">
+                                <button class="btn add-to-cart" data-id="1" data-name="Нежное утро" data-price="3500">Заказать</button>
+                                <button class="btn-favorite">❤️</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Карточка 2 - Летний бриз -->
+                    <article class="card" data-category="birthday" data-id="2" data-name="Летний бриз" data-price="2200">
+                        <img src="images/bouquet-2.jpg" alt="Букет Летний бриз из полевых цветов" class="card__img">
+                        <div class="card__content">
+                            <h3 class="card__title">Летний бриз</h3>
+                            <p class="card__desc">Ромашки, васильки, лаванда. Аромат лета в вашем доме.</p>
+                            <div class="card__details">
+                                <span class="card__price">2200 ₽</span>
+                                <span class="card__badge">Новинка</span>
+                            </div>
+                            <div class="card__actions">
+                                <button class="btn add-to-cart" data-id="2" data-name="Летний бриз" data-price="2200">Заказать</button>
+                                <button class="btn-favorite">❤️</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Карточка 3 - Признание -->
+                    <article class="card" data-category="romantic" data-id="3" data-name="Признание" data-price="4500">
+                        <img src="images/bouquet-3.jpg" alt="Монобукет Признание из красных роз" class="card__img">
+                        <div class="card__content">
+                            <h3 class="card__title">Признание</h3>
+                            <p class="card__desc">15 красных роз в пленке. Классика для особого момента.</p>
+                            <div class="card__details">
+                                <span class="card__price">4500 ₽</span>
+                                <span class="card__badge">Хит</span>
+                            </div>
+                            <div class="card__actions">
+                                <button class="btn add-to-cart" data-id="3" data-name="Признание" data-price="4500">Заказать</button>
+                                <button class="btn-favorite">❤️</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Карточка 4 - Солнечный день -->
+                    <article class="card" data-category="birthday" data-id="4" data-name="Солнечный день" data-price="2800">
+                        <img src="images/bouquet-4.jpg" alt="Букет Солнечный день из подсолнухов" class="card__img">
+                        <div class="card__content">
+                            <h3 class="card__title">Солнечный день</h3>
+                            <p class="card__desc">Яркие подсолнухи и хризантемы. Поднимет настроение.</p>
+                            <div class="card__details">
+                                <span class="card__price">2800 ₽</span>
+                            </div>
+                            <div class="card__actions">
+                                <button class="btn add-to-cart" data-id="4" data-name="Солнечный день" data-price="2800">Заказать</button>
+                                <button class="btn-favorite">❤️</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Карточка 5 - Сиреневая нежность -->
+                    <article class="card" data-category="wedding" data-id="5" data-name="Сиреневая нежность" data-price="3200">
+                        <img src="images/bouquet-5.jpg" alt="Букет Сиреневая нежность из сирени" class="card__img">
+                        <div class="card__content">
+                            <h3 class="card__title">Сиреневая нежность</h3>
+                            <p class="card__desc">Букет из сирени и пионов. Весеннее настроение.</p>
+                            <div class="card__details">
+                                <span class="card__price">3200 ₽</span>
+                                <span class="card__badge">Новинка</span>
+                            </div>
+                            <div class="card__actions">
+                                <button class="btn add-to-cart" data-id="5" data-name="Сиреневая нежность" data-price="3200">Заказать</button>
+                                <button class="btn-favorite">❤️</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Карточка 6 - Весенний вальс -->
+                    <article class="card" data-category="wedding" data-id="6" data-name="Весенний вальс" data-price="3900">
+                        <img src="images/bouquet-6.jpg" alt="Композиция Весенний вальс" class="card__img">
+                        <div class="card__content">
+                            <h3 class="card__title">Весенний вальс</h3>
+                            <p class="card__desc">Тюльпаны, нарциссы и гиацинты в стильной коробке.</p>
+                            <div class="card__details">
+                                <span class="card__price">3900 ₽</span>
+                            </div>
+                            <div class="card__actions">
+                                <button class="btn add-to-cart" data-id="6" data-name="Весенний вальс" data-price="3900">Заказать</button>
+                                <button class="btn-favorite">❤️</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Пагинация -->
+        <section class="pagination">
+            <div class="container">
+                <div class="pagination__inner">
+                    <a href="#" class="pagination__link active">1</a>
+                    <a href="#" class="pagination__link">2</a>
+                    <a href="#" class="pagination__link">3</a>
+                    <a href="#" class="pagination__link">→</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Мини-корзина (уведомление) -->
+        <div class="cart-notification" id="cartNotification">
+            <span id="notificationMessage">Товар добавлен в корзину</span>
+            <a href="order.html" class="btn btn--small">Перейти в корзину</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <p>&copy; 2024 The Floretics of Magic. Все права защищены.</p>
+                <ul class="footer__links">
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                    <li><a href="#">Доставка и оплата</a></li>
+                    <li><a href="#">Возврат товара</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Скрипт для изменения шапки при скролле
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // ===== РАБОТА С КОРЗИНОЙ =====
+
+        // Функция для добавления товара в корзину
+        function addToCart(id, name, price) {
+            // Получаем существующую корзину из localStorage или создаем новую
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Проверяем, есть ли уже такой товар в корзине
+            const existingItem = cart.find(item => item.id === id);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+            }
+
+            // Сохраняем обновленную корзину
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Показываем уведомление
+            showNotification(`"${name}" добавлен в корзину!`);
+
+            // Обновляем счетчик товаров (если есть)
+            updateCartCounter();
+        }
+
+        // Функция для показа уведомления
+        function showNotification(message) {
+            const notification = document.getElementById('cartNotification');
+            document.getElementById('notificationMessage').textContent = message;
+
+            notification.classList.add('show');
+
+            // Скрываем через 3 секунды
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Функция для обновления счетчика товаров
+        function updateCartCounter() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            // Создаем или обновляем значок корзины в шапке
+            let cartIcon = document.querySelector('.cart-icon');
+
+            if (!cartIcon) {
+                const navList = document.querySelector('.nav__list');
+                if (navList) {
+                    const cartItem = document.createElement('li');
+                    cartItem.className = 'nav__item cart-icon-container';
+                    cartItem.innerHTML = `
+                            <a href="order.html" class="nav__link cart-icon">
+                                🛒 <span class="cart-count">${totalItems}</span>
+                            </a>
+                        `;
+                    navList.appendChild(cartItem);
+                }
+            } else {
+                const countSpan = cartIcon.querySelector('.cart-count');
+                if (countSpan) {
+                    countSpan.textContent = totalItems;
+                }
+            }
+        }
+
+        // Обработчики для кнопок "Заказать"
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const id = parseInt(this.dataset.id);
+                const name = this.dataset.name;
+                const price = parseInt(this.dataset.price);
+
+                addToCart(id, name, price);
+
+                // Визуальный эффект на кнопке
+                const originalText = this.textContent;
+                this.textContent = '✓ Добавлено!';
+                this.style.backgroundColor = '#4CAF50';
+                this.style.borderColor = '#4CAF50';
+                this.style.color = 'white';
+
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.backgroundColor = '';
+                    this.style.borderColor = '';
+                    this.style.color = '';
+                }, 1500);
+            });
+        });
+
+        // Обработчики для кнопок "Избранное"
+        document.querySelectorAll('.btn-favorite').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                if (this.textContent === '❤️') {
+                    this.textContent = '💔';
+                    this.style.backgroundColor = '#ff6f61';
+                    this.style.color = 'white';
+
+                    // Можно сохранять в localStorage избранное
+                } else {
+                    this.textContent = '❤️';
+                    this.style.backgroundColor = 'transparent';
+                    this.style.color = '#ff8c42';
+                }
+            });
+        });
+
+        // Фильтрация товаров
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                // Убираем активный класс у всех кнопок
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.dataset.filter;
+                const cards = document.querySelectorAll('.card');
+
+                cards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'flex';
+                    } else {
+                        const category = card.dataset.category;
+                        if (category === filter) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // Пагинация (просто подсветка)
+        document.querySelectorAll('.pagination__link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelectorAll('.pagination__link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+
+                // Здесь можно добавить реальную пагинацию
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartCounter();
+        });
+    </script>
+
+    <style>
+        /* Стили для уведомления */
+        .cart-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border-left: 4px solid #4CAF50;
+        }
+
+            .cart-notification.show {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+        .cart-icon-container {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff6f61;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            min-width: 18px;
+            height: 18px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4px;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 600px) {
+            .cart-notification {
+                left: 20px;
+                right: 20px;
+                border-radius: 30px;
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/css/">
+    <File Path="css/style.css" />
+  </Folder>
+  <Folder Name="/Элементы решения/">
+    <File Path="about.html" />
+    <File Path="catalog.html" />
+    <File Path="contacts.html" />
+    <File Path="index.html" />
+    <File Path="order.html" />
+  </Folder>
+  <Project Path="Fomicheva_Polina24/Fomicheva_Polina24.csproj" />
+</Solution>
